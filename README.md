@@ -1,4 +1,5 @@
 # monolithic-weather-app
-Formation Java - TP Journée 2
+Application Java basique et autonome donnant la météo pour un code postal en France
 
-Dev repris pour Eclipse
+* Formation Java - TP Journée 2
+* Dev repris pour Eclipse
