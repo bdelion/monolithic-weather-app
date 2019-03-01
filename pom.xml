@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <!-- Version du fichier -->
+    <modelVersion>4.0.0</modelVersion>
+    <!-- POM parent -->
+    <!-- Definition de l'artefact -->
+    <groupId>org.fifiz.training.java</groupId>
+    <artifactId>monolithic-weather-app</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>monolithic-weather-app</name>
+    <description>WebApp Java donnant la météo pour un code postal en France</description>
+    <!-- FIXME change it to the project's website -->
+    <url>https://bdelion.github.io/monolithic-weather-app/</url>
+    <!-- Gestionnaire de code source -->
+    <!-- https://github.com/kevinsawicki/github-maven-example/blob/master/example/pom.xml -->
+    <scm>
+        <url>https://github.com/bdelion/monolithic-weather-app</url>
+        <connection>scm:git:git://github.com/bdelion/monolithic-weather-app.git</connection>
+        <developerConnection>scm:git:git@github.com:bdelion/monolithic-weather-app.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/bdelion/monolithic-weather-app/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+    <developers>
+        <developer>
+            <email>bertrand.delion@free.fr</email>
+            <name>Bertrand Delion</name>
+            <url>https://github.com/bdelion</url>
+            <id>bdelion</id>
+        </developer>
+    </developers>
+    <!-- Liste des proprietes -->
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <com.sun.faces.version>2.2.18</com.sun.faces.version>
+        <codacy-api-token>iORaPgvl6OEVY3UfnsoL</codacy-api-token>
+        <codacy-project-token>e150ffd07c32435893bb6902d28fb555</codacy-project-token>
+        <coveralls-repo-token>VdPhmjc9brgL7RKjVLV4JX8IOtkxwxNxd</coveralls-repo-token>
+    </properties>
+    <!-- Liste des dependances -->
+    <dependencies>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>${com.sun.faces.version}</version>
+        </dependency>
+        <!-- mvn dependency:analyze -DignoreNonCompile=true -> Unused declared dependencies found:
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>${com.sun.faces.version}</version>
+            <scope>runtime</scope>
+        </dependency> -->
+        <!-- Pour les logs -->
+        <!-- mvn dependency:analyze -DignoreNonCompile=true -> Unused declared dependencies found:
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.11.2</version>
+            <scope>compile</scope>
+        </dependency> -->
+        <!-- mvn dependency:analyze -DignoreNonCompile=true -> Used undeclared dependencies found: -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+        <!-- Pour Json -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.8</version>
+        </dependency>
+        <!-- Pour les tests -->
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-jre8</artifactId>
+            <version>2.21.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13-beta-2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <!-- Configuration de la construction des livrables -->
+    <build>
+        <finalName>JavaServerFaces</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
