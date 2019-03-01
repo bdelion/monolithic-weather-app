@@ -1,11 +1,11 @@
 package org.fifiz.training.java.monolithic_weather_app;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import java.io.Serializable;
-
-@ManagedBean
+@ManagedBean(name = "weatherBean")
 @SessionScoped
 public class WeatherBean implements Serializable {
 
@@ -13,10 +13,10 @@ public class WeatherBean implements Serializable {
 
     private String codePostal;
 
-    public String goToResult(){
+    public String goToResult() {
         return "welcome";
     }
-    
+
     public String getCodePostal() {
         return codePostal;
     }
