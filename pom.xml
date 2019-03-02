@@ -136,7 +136,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -158,14 +157,6 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty-maven-plugin.version}</version>
-                <configuration>
-                    <httpConnector>
-                        <port>9090</port>
-                    </httpConnector>
-                    <webApp>
-                        <contextPath>/codenotfound</contextPath>
-                    </webApp>
-                </configuration>
             </plugin>
         </plugins>
     </build>

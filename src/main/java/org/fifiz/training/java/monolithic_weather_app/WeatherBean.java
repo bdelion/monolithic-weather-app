@@ -1,6 +1,6 @@
 package org.fifiz.training.java.monolithic_weather_app;
 
-//import java.io.Serializable;
+import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
