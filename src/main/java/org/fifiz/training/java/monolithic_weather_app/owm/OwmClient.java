@@ -2,6 +2,7 @@ package org.fifiz.training.java.monolithic_weather_app.owm;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 //import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -32,8 +33,8 @@ public class OwmClient {
         this.jsonMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
-    public OwmClient(String codePostal) {
-        this.ownUrl = "http://api.openweathermap.org/data/2.5/weather?zip={codePostal},fr&APPID=8c05dfed7d5d0d8ba3a2bc70b83b227f";
+    public OwmClient(String codePostal) throws MalformedURLException {
+        this.ownUrl = new URL("http://api.openweathermap.org/data/2.5/weather?zip={codePostal},fr&APPID=8c05dfed7d5d0d8ba3a2bc70b83b227f".replace("{codePostal}", codePostal));
         this.jsonMapper = new ObjectMapper();
         this.jsonMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
