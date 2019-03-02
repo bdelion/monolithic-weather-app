@@ -33,17 +33,20 @@
     </developers>
     <!-- Liste des proprietes -->
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <com.sun.faces.version>2.2.18</com.sun.faces.version>
+        <maven.compiler.source.version>1.8</maven.compiler.source.version>
+        <maven.compiler.target.version>1.8</maven.compiler.target.version>
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <jetty-maven-plugin.version>9.4.15.v20190215</jetty-maven-plugin.version>
+        <jsf.version>2.2.18</jsf.version>
+        <junit.version>4.13-beta-2</junit.version>
         <codacy-api-token>iORaPgvl6OEVY3UfnsoL</codacy-api-token>
         <codacy-project-token>e150ffd07c32435893bb6902d28fb555</codacy-project-token>
         <coveralls-repo-token>VdPhmjc9brgL7RKjVLV4JX8IOtkxwxNxd</coveralls-repo-token>
     </properties>
     <!-- Liste des dependances -->
     <dependencies>
-        <!-- Pour javax -->
+        <!-- JSF -->
         <!-- Option 1: Use if deploying to a Java EE application server (GlassFish, JBoss AS, etc) -->
         <!--
         <dependency>
@@ -56,14 +59,15 @@
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-api</artifactId>
-            <version>${com.sun.faces.version}</version>
+            <version>${jsf.version}</version>
+            <scope>compile</scope>
         </dependency>
         <!-- mvn dependency:analyze -DignoreNonCompile=true -> Unused declared dependencies found: -->
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
-            <version>${com.sun.faces.version}</version>
-            <scope>runtime</scope>
+            <version>${jsf.version}</version>
+            <scope>compile</scope>
         </dependency>
         <!-- Pour les logs -->
         <!-- mvn dependency:analyze -DignoreNonCompile=true -> Unused declared dependencies found:
@@ -101,7 +105,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13-beta-2</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -132,15 +136,15 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <finalName>JavaServerFaces</finalName>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${maven.compiler.source.version}</source>
+                    <target>${maven.compiler.target.version}</target>
                 </configuration>
             </plugin>
             <!-- Plug-in nécessaire pour maven-project-info-reports-plugin 3.0.0. -->
@@ -153,7 +157,15 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.15.v20190215</version>
+                <version>${jetty-maven-plugin.version}</version>
+                <configuration>
+                    <httpConnector>
+                        <port>9090</port>
+                    </httpConnector>
+                    <webApp>
+                        <contextPath>/codenotfound</contextPath>
+                    </webApp>
+                </configuration>
             </plugin>
         </plugins>
     </build>
