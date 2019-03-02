@@ -41,8 +41,8 @@
         <jsf.version>2.2.18</jsf.version>
         <junit.version>4.13-beta-2</junit.version>
         <codacy-api-token>iORaPgvl6OEVY3UfnsoL</codacy-api-token>
-        <codacy-project-token>e150ffd07c32435893bb6902d28fb555</codacy-project-token>
-        <coveralls-repo-token>VdPhmjc9brgL7RKjVLV4JX8IOtkxwxNxd</coveralls-repo-token>
+        <codacy-project-token>9eea75422608405893bbc0e948acecb2</codacy-project-token>
+        <coveralls-repo-token>6k1mVSetu4UioWLh5JmXQXZfR4y2CKqsX</coveralls-repo-token>
     </properties>
     <!-- Liste des dependances -->
     <dependencies>
@@ -158,6 +158,50 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty-maven-plugin.version}</version>
             </plugin>
+            <!--
+                You can run cobertura in the default profile with: mvn cobertura:cobertura coveralls:report
+            -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <format>xml</format>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>cobertura-reporting</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>cobertura</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--
+                You can run jacoco in the default profile with: mvn jacoco:prepare-agent test jacoco:report
+            -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.3</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <reporting>
@@ -181,6 +225,142 @@
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>cobertura</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
         </plugins>
     </reporting>
+    <profiles>
+        <!--
+        For the Checkstyle profile:
+        - we want to break the build on any checkstyle violation.
+        ! Manual execution !
+        -->
+        <profile>
+            <id>checkstyle</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>checkstyle</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!--
+        For the Travis profile:
+        - we want to failed on any vulnerability (OWASP)
+        - we want to upload code coverage reports to codacy.com
+        - we want to upload code coverage reports to coveralls.io
+        -->
+        <profile>
+            <id>travis</id>
+            <activation>
+                <property>
+                    <name>env.TRAVIS</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Check vulnerability -->
+                    <!-- https://jeremylong.github.io/DependencyCheck/dependency-check-maven/index.html -->
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>5.0.0-M1</version>
+                        <configuration>
+                            <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Codacy TU coverage -->
+                    <plugin>
+                        <groupId>com.gavinmogan</groupId>
+                        <artifactId>codacy-maven-plugin</artifactId>
+                        <version>1.0.3</version>
+                        <configuration>
+                            <apiToken>${codacy-api-token}</apiToken>
+                            <projectToken>${codacy-project-token}</projectToken>
+                            <language>Java</language>
+                            <coverageReportFile>${project.reporting.outputDirectory}/jacoco/jacoco.xml</coverageReportFile>
+                            <commit>${env.TRAVIS_COMMIT}</commit>
+                            <codacyApiBaseUrl>https://api.codacy.com</codacyApiBaseUrl>
+                            <failOnMissingReportFile>true</failOnMissingReportFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>post-test</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>coverage</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Coveralls TU coverage -->
+                    <!-- Execute Maven to create JaCoCo report and submit Coveralls data : mvn clean test jacoco:report coveralls:report
+                         https://github.com/trautonen/coveralls-maven-plugin
+                    -->
+                    <plugin>
+                        <groupId>org.eluder.coveralls</groupId>
+                        <artifactId>coveralls-maven-plugin</artifactId>
+                        <version>4.3.0</version>
+                        <configuration>
+                            <repoToken>${coveralls-repo-token}</repoToken>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>post-test</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
