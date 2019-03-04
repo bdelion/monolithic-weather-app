@@ -1,51 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.fifiz.training.java.monolithic_weather_app.owm;
 
 /**
- *
+ * Class météo.
  * @author bertrand
  */
 public class Weather {
-    private int id;
+
+    private String id;
     private String main;
     private String description;
     private String icon;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String pid) {
+        this.id = pid;
     }
 
     public String getMain() {
         return main;
     }
 
-    public void setMain(String main) {
-        this.main = main;
+    public void setMain(String pmain) {
+        this.main = pmain;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String pdescription) {
+        this.description = pdescription;
     }
 
     public String getIcon() {
         return icon;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setIcon(String picon) {
+        this.icon = picon;
     }
-    
-    
 }

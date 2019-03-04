@@ -1,33 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.fifiz.training.java.monolithic_weather_app.owm;
 
 /**
- *
+ * Classe vent.
  * @author bertrand
  */
 public class Wind {
-    private float speed;
-    private float deg;
 
-    public float getSpeed() {
+    private Double speed;
+    private Double deg;
+
+    public Double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(float speed) {
+    public void setSpeed(Double speed) {
         this.speed = speed;
     }
 
-    public float getDeg() {
-        return deg;
-    }
+  public Double getDeg() {
+    return deg;
+  }
 
-    public void setDeg(float deg) {
+    public void setDeg(Double deg) {
         this.deg = deg;
     }
-    
-    
 }

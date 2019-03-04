@@ -11,8 +11,15 @@
 </h:head>
 <h:body>
 	<div id="content">
-		<h3>JSF 2.0 Hello World Example - welcome.xhtml</h3>
-		<h4>Welcome #{weatherBean.codePostal}</h4>
+		<h3>Obtenir la météo de sa ville</h3>
+		<h5>Code postal :</h5>
+		<p>
+			#{weatherBean.codePostal}
+		</p>
+		<h5>Résultat :</h5>
+		<p>
+			#{weatherBean.result}
+		</p>
 	</div>
 </h:body>
 
