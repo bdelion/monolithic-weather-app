@@ -22,6 +22,12 @@ WebApp Java donnant la météo pour un code postal en France
 
 --> ce projet remplace [javaMonolithicTraining](https://github.com/bdelion/javaMonolithicTraining.git)
 
+## Divers
+
 Pour les tests, voir :
 
 * <http://blog.xebia.fr/2014/04/28/wiremock-mockito-serveur-http/>
+
+Autres :
+
+* https://www.mkyong.com/jsf2/jsf-2-outputtext-example/
