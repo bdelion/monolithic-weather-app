@@ -1,15 +1,17 @@
 Travis CI  
-[![Build Status](https://travis-ci.com/bdelion/monolithic-weather-app.svg?branch=develop)](https://travis-ci.com/bdelion/monolithic-weather-app)  
+[![Build Status](https://travis-ci.com/bdelion/monolithic-weather-app.svg?branch=master)](https://travis-ci.com/bdelion/monolithic-weather-app)  
 Codacy  
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d5584d90557a4149ba3b82c5bd5103f2)](https://www.codacy.com/app/bdelion/monolithic-weather-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bdelion/monolithic-weather-app&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/d5584d90557a4149ba3b82c5bd5103f2)](https://www.codacy.com/app/bdelion/monolithic-weather-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bdelion/monolithic-weather-app&amp;utm_campaign=Badge_Coverage)  
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c661294477af4801929d0abb9e9613cf)](https://www.codacy.com/app/bdelion/monolithic-weather-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bdelion/monolithic-weather-app&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/c661294477af4801929d0abb9e9613cf)](https://www.codacy.com/app/bdelion/monolithic-weather-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bdelion/monolithic-weather-app&amp;utm_campaign=Badge_Coverage)  
 Code Climate  
-[![Maintainability](https://api.codeclimate.com/v1/badges/bb546f069e3a6fc72e17/maintainability)](https://codeclimate.com/github/bdelion/monolithic-weather-app/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/bb546f069e3a6fc72e17/test_coverage)](https://codeclimate.com/github/bdelion/monolithic-weather-app/test_coverage)  
+[![Maintainability](https://api.codeclimate.com/v1/badges/bd5d2ee7ab717b88cad0/maintainability)](https://codeclimate.com/github/bdelion/monolithic-weather-app/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/bd5d2ee7ab717b88cad0/test_coverage)](https://codeclimate.com/github/bdelion/monolithic-weather-app/test_coverage)  
 Codecov  
-[![codecov](https://codecov.io/gh/bdelion/monolithic-weather-app/branch/develop/graph/badge.svg)](https://codecov.io/gh/bdelion/monolithic-weather-app)    
+[![codecov](https://codecov.io/gh/bdelion/monolithic-weather-app/branch/master/graph/badge.svg)](https://codecov.io/gh/bdelion/monolithic-weather-app)  
 CoverAlls  
-[![Coverage Status](https://coveralls.io/repos/github/bdelion/monolithic-weather-app/badge.svg?branch=develop)](https://coveralls.io/github/bdelion/monolithic-weather-app?branch=develop)  
+[![Coverage Status](https://coveralls.io/repos/github/bdelion/monolithic-weather-app/badge.svg?branch=master)](https://coveralls.io/github/bdelion/monolithic-weather-app?branch=master)  
+Sourcerer  
+[![Sourcerer](https://sourcerer.io/icons/logo-sharing.svg)](https://sourcerer.io/bdelion)  
 
 # monolithic-weather-app
 
@@ -22,6 +24,12 @@ WebApp Java donnant la météo pour un code postal en France
 
 --> ce projet remplace [javaMonolithicTraining](https://github.com/bdelion/javaMonolithicTraining.git)
 
+## Divers
+
 Pour les tests, voir :
 
 * <http://blog.xebia.fr/2014/04/28/wiremock-mockito-serveur-http/>
+
+Autres :
+
+* https://www.mkyong.com/jsf2/jsf-2-outputtext-example/
